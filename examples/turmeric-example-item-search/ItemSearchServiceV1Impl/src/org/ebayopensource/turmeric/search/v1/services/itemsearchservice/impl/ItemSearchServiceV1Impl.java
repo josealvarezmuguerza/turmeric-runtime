@@ -1,6 +1,7 @@
 
 package org.ebayopensource.turmeric.search.v1.services.itemsearchservice.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.ebayopensource.turmeric.common.v1.types.CommonErrorData;
@@ -31,19 +32,38 @@ public class ItemSearchServiceV1Impl
 	public FindByKeywordsResponse findByKeywords(FindByKeywordsRequest findByKeywordsRequest) {
 		List<String> keywords = findByKeywordsRequest.getKeyword();
 		FindByKeywordsResponse response = new FindByKeywordsResponse();
-		List<ItemType> eBayItems = ItemDataSources.getItemsFromEbay(keywords);
-		List<ItemType> amazonItems = ItemDataSources.getItemsFromAmazon(keywords);
-		System.out.println("##### Number of items from Amazon: " + amazonItems  != null ? amazonItems.size() : 0);
-		if (eBayItems.isEmpty() && (amazonItems.isEmpty())) {
-			CommonErrorData errorData = ErrorDataFactory.createErrorData(ErrorConstants.NOITEMFOUND,ErrorConstants.ERRORDOMAIN);
-			ErrorMessage errMsg = new ErrorMessage();
-			errMsg.getError().add(errorData);
-			response.setErrorMessage(errMsg);
-			return response;
+		List<ItemType> eBayItems =new ArrayList<ItemType>(0);
+		List<ItemType> amazonItems = new ArrayList<ItemType>(0);;
+		try {
+			try {
+				eBayItems.addAll(ItemDataSources.getItemsFromEbay(keywords));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				amazonItems.addAll(ItemDataSources.getItemsFromAmazon(keywords));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("##### Number of items from Amazon: " + amazonItems  != null ? amazonItems.size() : 0);
+			System.out.println("##### Number of items from Ebay: " + eBayItems  != null ? eBayItems.size() : 0);
+			
+			if (eBayItems.isEmpty() && (amazonItems.isEmpty())) {
+				CommonErrorData errorData = ErrorDataFactory.createErrorData(ErrorConstants.NOITEMFOUND,ErrorConstants.ERRORDOMAIN);
+				ErrorMessage errMsg = new ErrorMessage();
+				errMsg.getError().add(errorData);
+				response.setErrorMessage(errMsg);
+				return response;
+			}
+			List<ItemType> itemListing = response.getItem();
+			itemListing.addAll(eBayItems);
+			itemListing.addAll(amazonItems);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		List<ItemType> itemListing = response.getItem();
-		itemListing.addAll(eBayItems);
-		itemListing.addAll(amazonItems);
 		return response;
 	}
 }

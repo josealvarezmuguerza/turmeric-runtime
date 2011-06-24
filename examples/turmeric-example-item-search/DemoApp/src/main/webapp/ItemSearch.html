@@ -70,7 +70,7 @@ YUI({ filter: 'raw' }).use("node", "io", "dump", "json-parse",function (Y) {
 
     var callback = {
 
-        timeout : 30000,
+        timeout : 50000,
 
         on : {
             success : function (x,o) {
@@ -116,7 +116,7 @@ YUI({ filter: 'raw' }).use("node", "io", "dump", "json-parse",function (Y) {
             },
 
             failure : function (x,o) {
-                alert("Async call failed!");
+                alert("Async call failed!="+o.responseText);
             }
 
         }
@@ -127,7 +127,7 @@ YUI({ filter: 'raw' }).use("node", "io", "dump", "json-parse",function (Y) {
         // Make the call to the server for JSON data
         keywordDisplay.set('innerHTML', "Search Results for Keyword: " + keyword.get('value'));
         target.set('innerHTML', "");
-        Y.io("/DemoApp/ItemSearch?X-TURMERIC-OPERATION-NAME=findByKeywords&X-TURMERIC-RESPONSE-DATA-FORMAT=JSON&keyword=" + keyword.get('value'), callback);
+        Y.io("/DemoApp/ItemSearchServiceV1?X-TURMERIC-OPERATION-NAME=findByKeywords&X-TURMERIC-RESPONSE-DATA-FORMAT=JSON&keyword=" + keyword.get('value'), callback);
     },'#search_btn');
 
 });
