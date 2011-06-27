@@ -14,7 +14,7 @@
        <description>TurmericConsole</description>
        <display-name>TurmericConsole</display-name>
        <servlet-name>TurmericConsole</servlet-name>
-       <servlet-class>org.ebayopensource.turmeric.runtime.servlet.TurmericConsoleFrontController</servlet-class>
+       <servlet-class>org.ebayopensource.turmeric.runtime.spf.servlet.TurmericConsoleFrontController</servlet-class>
    </servlet>
   <servlet-mapping>
        <servlet-name>TurmericConsole</servlet-name>

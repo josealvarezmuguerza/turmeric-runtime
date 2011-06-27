@@ -2,6 +2,18 @@
 <service-config xmlns="http://www.ebayopensource.org/turmeric/common/config">
     <service-impl-class-name>org.ebayopensource.turmeric.search.v1.services.itemsearchservice.impl.ItemSearchServiceV1Impl</service-impl-class-name>
     <service-interface-class-name>org.ebayopensource.turmeric.search.v1.services.itemsearchservice.ItemSearchServiceV1</service-interface-class-name>
+    <monitor-config>
+        <storage-provider name="DAOMetricsStorageProvider">
+            <class-name>org.ebayopensource.turmeric.monitoring.storage.DAOMetricsStorageProvider</class-name>
+            <storage-options>
+                <option name="persistenceUnitName">metrics</option>
+                <option name="metricsDAOClassName">org.ebayopensource.turmeric.monitoring.MetricsDAOImpl</option>
+                <option name="storeServiceMetrics">false</option>
+            </storage-options>
+        </storage-provider>
+        <snapshot-interval>60</snapshot-interval>
+    </monitor-config>
+
     <service-instance-config>
         <protocol-processor version="1.1" name="SOAP11">
             <indicator>

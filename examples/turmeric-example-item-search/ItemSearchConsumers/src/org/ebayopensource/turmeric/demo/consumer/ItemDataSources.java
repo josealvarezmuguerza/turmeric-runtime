@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import org.ebayopensource.turmeric.demo.consumer.SignedRequestHelper;
 import org.ebayopensource.turmeric.runtime.binding.objectnode.impl.JavaObjectNodeImpl;
 import org.ebayopensource.turmeric.runtime.common.exceptions.ServiceException;
 import org.ebayopensource.turmeric.search.v1.types.ItemType;
