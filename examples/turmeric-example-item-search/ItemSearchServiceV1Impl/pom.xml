@@ -42,6 +42,8 @@
 			<artifactId>ItemSearchConsumers</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<!-- MONITORING -->
 		<dependency>
 			<groupId>org.ebayopensource.turmeric.monitoring</groupId>
 			<artifactId>turmeric-monitoring-provider</artifactId>
@@ -51,6 +53,210 @@
 			<groupId>org.ebayopensource.turmeric.monitoring</groupId>
 			<artifactId>turmeric-monitoring-dao-provider</artifactId>
 			<version>1.0.0-Beta-RC2</version>
+		</dependency>
+	        
+	        <!-- SECURITY 
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.errorlib</groupId>
+                        <artifactId>PolicyErrorLibrary</artifactId>
+                        <version>1.0.0.4-SNAPSHOT</version>
+                </dependency>
+                 
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.policy</groupId>
+                        <artifactId>PolicyProviderInterface</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.intf</groupId>
+                         <artifactId>PolicyService</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.client</groupId>
+                        <artifactId>PolicyServiceConsumer</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.impl</groupId>
+                        <artifactId>PolicyServiceImpl</artifactId>                  
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.intf</groupId>
+                        <artifactId>PolicyEnforcementService</artifactId>
+                        <version>1.0.1.0-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.impl</groupId>
+                        <artifactId>PolicyEnforcementServiceImpl</artifactId>
+                        <version>1.0.1.0-SNAPSHOT</version>
+                </dependency>                  
+                <dependency>
+                  <groupId>org.ebayopensource.turmeric.policy</groupId>
+                  <artifactId>PolicyProviderInterface</artifactId>              
+                   <version>1.0.0-Beta-RC2</version>
+                </dependency>       
+                <dependency>
+                      <groupId>org.ebayopensource.turmeric.groupmembership</groupId>
+                      <artifactId>GroupMembershipProviderInterface</artifactId>
+                      <version>1.0.0-Beta-RC2</version>
+                </dependency>       
+                <dependency>
+                       <groupId>org.ebayopensource.turmeric.impl</groupId>
+                       <artifactId>AuthenticationServiceImpl</artifactId>
+                       <version>1.0.1.0-SNAPSHOT</version>
+                </dependency>       
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.client</groupId>
+                        <artifactId>GroupMembershipServiceConsumer</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>       
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.impl</groupId>
+                        <artifactId>GroupMembershipServiceImpl</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>       
+                <dependency>
+                        <groupId>org.ebayopensource.turmeric.groupmembership</groupId>
+                        <artifactId>GroupMembershipProviderInterface</artifactId>
+                        <version>1.0.0-Beta-RC2</version>
+                </dependency>       
+ -->
+
+
+              
+              
+              
+              
+              
+                  
+                  
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.runtime</groupId>
+			<artifactId>binding-framework</artifactId>
+			<version>1.0.1.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.utils</groupId>
+			<artifactId>TurmericUtils</artifactId>
+			<version>1.0.0-Beta</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.client</groupId>
+			<artifactId>RateLimiterServiceConsumer</artifactId>
+			<version>1.0.1.0-20110626.120620-79</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.intf</groupId>
+			<artifactId>RateLimiterService</artifactId>
+			<version>1.0.1.0-20110628.120540-81</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.runtime</groupId>
+			<artifactId>soa-client</artifactId>
+			<version>1.0.1.0-20110626.070732-95</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.security</groupId>
+			<artifactId>SecurityCommon</artifactId>
+			<version>1.0.1.0-20110628.120202-105</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.intf</groupId>
+			<artifactId>PolicyService</artifactId>
+			<version>1.0.1.0-20101230.083807-75</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.impl</groupId>
+			<artifactId>PolicyServiceImpl</artifactId>
+			<version>1.0.1.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.client</groupId>
+			<artifactId>PolicyServiceConsumer</artifactId>
+			<version>1.0.1.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.policy</groupId>
+			<artifactId>turmeric-policy-provider</artifactId>
+			<version>1.0.1.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.client</groupId>
+			<artifactId>AuthenticationServiceConsumer</artifactId>
+			<version>1.0.1.0-20110626.120245-102</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.client</groupId>
+			<artifactId>AuthorizationServiceConsumer</artifactId>
+			<version>1.0.1.0-20110626.120407-102</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.errorlib</groupId>
+			<artifactId>PolicyErrorLibrary</artifactId>
+			<version>1.0.1.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.impl</groupId>
+			<artifactId>RateLimiterProviderImpl</artifactId>
+			<version>1.0.0.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.ratelimiter</groupId>
+			<artifactId>RateLimiterProvider</artifactId>
+			<version>1.0.1.0-20110628.120600-38</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.impl</groupId>
+			<artifactId>RateLimiterServiceImpl</artifactId>
+			<version>1.0.1.0-20110626.120608-79</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ebayopensource.turmeric.errorlib</groupId>
+			<artifactId>RateLimiterErrorLibrary</artifactId>
+			<version>1.0.1.0-20110628.120550-81</version>
+			<type>pom</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.cobertura</groupId>
+			<artifactId>cobertura</artifactId>
+			<version>1.9.4.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	<build>
