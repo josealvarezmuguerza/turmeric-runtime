@@ -65,6 +65,18 @@ public abstract class AbstractServiceGeneratorTestCase extends AbstractCodegenTe
 			
 		
 	}
+	protected void setURLsInClassLoader(URL  [] urls){
+	URLClassLoader loader = new URLClassLoader(urls,Thread.currentThread().getContextClassLoader());
+	Thread.currentThread().setContextClassLoader(loader);
+	}
+	
+
+	
+	protected Class<?> loadClass(String fullyQualifiedName) throws ClassNotFoundException{
+		 
+		 Class<?> cls = Thread.currentThread().getContextClassLoader().loadClass(fullyQualifiedName);
+		 return cls;
+	 }
 	
 	/**
      * Convenience method for {@link CodegenTestUtils#assertGeneratedContent(File, File, String, String, String)}
@@ -139,6 +151,12 @@ public abstract class AbstractServiceGeneratorTestCase extends AbstractCodegenTe
 	
 	public File getCodegenQEDataFileInput(String name) {
 		return TestResourceUtil.getResource("org/ebayopensource/turmeric/test/tools/codegen/qe/data/"
+				+ name);
+	}
+	
+	
+	public File getProtobufRelatedInput(String name) {
+		return TestResourceUtil.getResource("org/ebayopensource/turmeric/test/tools/codegen/data/protobuf/"
 				+ name);
 	}
 

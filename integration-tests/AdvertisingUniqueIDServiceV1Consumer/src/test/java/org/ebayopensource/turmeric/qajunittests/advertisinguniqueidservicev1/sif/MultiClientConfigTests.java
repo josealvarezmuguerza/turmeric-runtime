@@ -1,11 +1,16 @@
 package org.ebayopensource.turmeric.qajunittests.advertisinguniqueidservicev1.sif;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.Assert;
 
 import org.ebayopensource.turmeric.advertising.v1.services.EchoMessageRequest;
 import org.ebayopensource.turmeric.advertisinguniqueidservicev1.gen.SharedAdvertisingUniqueIDServiceV1Consumer;
 import org.ebayopensource.turmeric.runtime.common.exceptions.ServiceException;
 import org.ebayopensource.turmeric.runtime.common.types.SOAConstants;
+import org.ebayopensource.turmeric.runtime.tests.common.util.HttpTestClient;
+import org.ebayopensource.turmeric.runtime.tests.common.util.MetricUtil;
 import org.junit.Test;
 
 
@@ -161,7 +166,126 @@ public class MultiClientConfigTests {
 			// TODO Auto-generated catch block
 			Assert.assertTrue(e.getMessage().contains(errorMessage));
 		}
+	}
+
+
+	/*
+	 *	When envtName is null, envMapper variable is not set
+	 *		BaseSOAAsyncMCCTestConsumer testClient = new BaseSOAAsyncMCCTestConsumer(“SOAAsyncServiceTestClient”, null);
+	 *	a.	Appropriate error message should be thrown
+	 */
+	@Test
+	public void testNullEnvtWhenEnvtMapperVariableisNotSet() {
+		SharedAdvertisingUniqueIDServiceV1Consumer testClient8;
+		String errorMessage = "Unable to load file: META-INF/soa/client/config/" +
+				"SOAAsyncMCCTestServiceConsumer1_Client/myErrorEnvt/SOAAsyncService/" +
+				"ClientConfig.xml";
+		try {
+			testClient8 = new SharedAdvertisingUniqueIDServiceV1Consumer("AdvertisingUniqueIDServiceV1Consumer", null);
+			EchoMessageRequest req = new EchoMessageRequest();
+			req.setIn("test");
+			Assert.assertEquals(testClient8.echoMessage(req).getOut(), "Test");
+			Assert.assertTrue("consumer creation should fail and throw exception" , false);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+ 			Assert.assertTrue(e.getMessage().contains(errorMessage));
+		}
+	}
+	/*
+	 *	Client Name is null  WhenEnvtMapperVariableisNotSet
+	 *		BaseSOAAsyncMCCTestConsumer testClient = new BaseSOAAsyncMCCTestConsumer(null, "production");
+	 *	a.	Appropriate error message should be thrown
+	 *
+	 */
+	@Test
+	public void testNullClientNameWhenEnvtMapperVariableisNotSet() {
+		SharedAdvertisingUniqueIDServiceV1Consumer testClient8;
+		String errorMessage = "Unable to load file: META-INF/soa/client/config/" +
+				"SOAAsyncMCCTestServiceConsumer1_Client/myErrorEnvt/SOAAsyncService/" +
+				"ClientConfig.xml";
+		try {
+			 testClient8 = new SharedAdvertisingUniqueIDServiceV1Consumer("AdvertisingUniqueIDServiceV1Consumer", "production");
+			EchoMessageRequest req = new EchoMessageRequest();
+			req.setIn("test");
+			Assert.assertEquals(testClient8.echoMessage(req).getOut(), "Test");
+			Assert.assertTrue("consumer creation should fail and throw exception" , false);
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			Assert.assertTrue(e.getMessage().contains(errorMessage));
+		}
 
 
 	}
+	/*
+	 *	Client Name is null When EnvtMapper Variable is Set
+	 *		BaseSOAAsyncMCCTestConsumer testClient = new BaseSOAAsyncMCCTestConsumer(null, "production");
+	 *	a.	Appropriate error message should be thrown
+	 * http://quickbugstage.arch.ebay.com/show_bug.cgi?id=8279
+	 */
+	@Test
+	public void testNullClientNameWhenEnvtMapperVariableisSet() {
+		SharedAdvertisingUniqueIDServiceV1Consumer testClient8;
+		String errorMessage = "Unable to load file: META-INF/soa/client/config/" +
+				"SOAAsyncMCCTestServiceConsumer1_Client/myErrorEnvt/SOAAsyncService/" +
+				"ClientConfig.xml";
+		try {
+			testClient8 = new SharedAdvertisingUniqueIDServiceV1Consumer("AdvertisingUniqueIDServiceV1Consumer", "production");
+			EchoMessageRequest req = new EchoMessageRequest();
+			req.setIn("test");
+			Assert.assertEquals(testClient8.echoMessage(req).getOut(), "Test");
+			Assert.assertTrue("consumer creation should fail and throw exception" , false);
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+    		Assert.assertTrue(e.getMessage().contains(errorMessage));
+
+		}
+	}
+	/*
+	@Test
+	public void BUGDB00644700() throws ServiceException {
+		BaseAdaptivePaymentsConsumer testClient = new BaseAdaptivePaymentsConsumer("SOAAsyncMCCTestServiceConsumer1_Client", "production");
+		RefundRequest param0 = new RefundRequest();
+		param0.setCurrencyCode("INR");
+		Assert.assertEquals(testClient.refund(param0).getCurrencyCode(), " USD INR");
+		Assert.assertEquals(testClient.getService().getResponseContext().getTransportHeader("X-EBAY-SOA-RESPONSE-DATA-FORMAT"), "NV");
+	}
+	*/
+	/*
+	 * Related to BUGDB00651611
+	 */
+	@Test
+	public void testWithClientConfigBean() {
+		HttpTestClient http = HttpTestClient.getInstance();
+		Map<String, String> queryParams = new HashMap<String, String>();
+		String response = null;
+		System.out.println(" ** testWithClientConfigBean ** ");
+		try {
+			queryParams.clear();
+			String testURL="http://localhost:8080/ws/spf?X-TURMERIC-SOA-SERVICE-NAME=AdvertisingUniqueIDServiceV1&X-EBAY-SOA-OPERATION-NAME=getRequestID";
+			response = http.getResponse(testURL , queryParams);
+//			http://localhost:8080/ws/spf?X-EBAY-SOA-SERVICE-NAME=AdvertisingUniqueIDServiceV1&X-EBAY-SOA-OPERATION-NAME=getRequestID
+			queryParams.put("X-TURMERIC-SOA-SERVICE-NAME", "AdvertisingUniqueIDServiceV1");
+			queryParams.put("X-TURMERIC-SOA-OPERATION-NAME", "getRequestID");
+			http.getResponse("http://localhost:8080/ws/spf", queryParams);
+			queryParams.clear();
+			queryParams.put("id","com.ebay.soa.client.AdvertisingUniqueIDServiceV2.UniqueIDServiceV2Client.dev.Invoker");
+			queryParams.put("REQUEST_BINDING", "JSON");
+			response = MetricUtil.invokeHttpClient(queryParams, "update");
+			queryParams.put("forceXml","true");
+			response = MetricUtil.invokeHttpClient(queryParams, "view");
+			System.out.println("Response - " + response);
+			Assert.assertTrue("Error - Request Binding is not updated to JSON ",
+					MetricUtil.parseXML(response, "REQUEST_BINDING").contentEquals("JSON"));
+			System.out.println(" ** testWithClientConfigBean ** ");
+		} catch (Exception se) {
+			Assert.assertTrue("Error - No Exception should be thrown ", false);
+		}
+		queryParams.clear();
+		queryParams.put("id","com.ebay.soa.client.AdvertisingUniqueIDServiceV2.UniqueIDServiceV2Client.dev.Invoker");
+		queryParams.put("REQUEST_BINDING", "XML");
+		response = MetricUtil.invokeHttpClient(queryParams, "update");
+	}
 }
+

@@ -56,6 +56,7 @@
                 <schema>${schemas-dir}/library/TypeInformation.xsd</schema>
                 <schema>${schemas-dir}/errorLibrary/OrganizationErrorBlocks.xsd</schema>
                 <schema>${schemas-dir}/errorLibrary/ErrorBundle.xsd</schema>
+                <schema>${schemas-dir}/fastserformat/FastSerFormat.xsd</schema>
               </schemas>
             </configuration>
           </execution>
@@ -256,6 +257,33 @@
       <artifactId>turmeric-junit</artifactId>
       <version>1.0.3</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.ebayopensource.turmeric.runtime</groupId>
+    	<artifactId>soa-client</artifactId>
+    	<version>1.0.1.0-SNAPSHOT</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.google.protobuf</groupId>
+    	<artifactId>protobuf-java</artifactId>
+    	<version>2.4.0a</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.ebayopensource.turmeric.errorlib</groupId>
+    	<artifactId>runtime-error-library</artifactId>
+    	<version>${project.version}</version>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.ebayopensource.turmeric.typelib</groupId>
+    	<artifactId>common-type-library</artifactId>
+    	<version>${project.version}</version>
+
+    	<scope>compile</scope>
     </dependency>
   </dependencies>
   <profiles>
